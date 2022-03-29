@@ -1,5 +1,5 @@
-import { NavLink, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { NavLink, useParams, Route, Routes } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
 
 import moviesApi from '../services/moviesApi.js';
 
@@ -43,6 +43,11 @@ export default function MovieDetails() {
               </li>
             </ul>
           </div>
+          <Suspense fallback={<h2>LOading</h2>}>
+            <Routes>
+              <Route>MMMM</Route>
+            </Routes>
+          </Suspense>
         </div>
       )}
     </>
