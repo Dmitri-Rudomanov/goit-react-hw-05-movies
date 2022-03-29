@@ -9,6 +9,11 @@ const HomePage = lazy(() =>
 const MoviesPage = lazy(() =>
   import('../views/MoviesPage.js' /* webpackChunkName: "movies-page" */)
 );
+const MovieDetailsPage = lazy(() =>
+  import(
+    '../views/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
+  )
+);
 
 export default function App() {
   return (
@@ -19,6 +24,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
         </Routes>
       </Suspense>
     </Container>

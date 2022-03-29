@@ -1,10 +1,17 @@
-const API_KEY = '25037516-2b063c6f0e72bb55016baf1cc';
-const BASE_URL = 'https://pixabay.com/api/';
+const API_KEY = '9f7c5da3425a9d17909027ad2b61278f';
+const BASE_URL = 'https://api.themoviedb.org/3/';
 
-function fetchGallery(name, page) {
-  return fetch(
-    `${BASE_URL}?q=${name}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
-  ).then(response => {
+function fetchPopularMovies() {
+  return fetch(`${BASE_URL}/trending/movies/week?api_key=${API_KEY}`).then(
+    response => {
+      if (response.ok) {
+        return response.json();
+      }
+    }
+  );
+}
+function fetchDetails(id) {
+  return fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}`).then(response => {
     if (response.ok) {
       return response.json();
     }
@@ -12,7 +19,8 @@ function fetchGallery(name, page) {
 }
 
 const api = {
-  fetchGallery,
+  fetchPopularMovies,
+  fetchDetails,
 };
 
 export default api;
