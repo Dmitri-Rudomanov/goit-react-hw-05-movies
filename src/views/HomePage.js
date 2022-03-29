@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, useMatch, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 import moviesApi from '../services/moviesApi.js';
 
 export default function HomePage() {
   const location = useLocation();
   const [trending, setTrending] = useState([]);
-
   useEffect(() => {
     moviesApi
       .fetchPopularMovies()

@@ -1,12 +1,50 @@
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import moviesApi from '../services/moviesApi.js';
 
 export default function MovieDetails() {
-  const { moviesId } = useParams();
+  const { movieId } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [cast, setCast] = useState(null);
   useEffect(() => {
-    moviesApi.fetchDetails(moviesId).then(console.log);
-  }, [moviesId]);
-  return <p></p>;
+    moviesApi.fetchDetails(movieId).then(setMovie);
+  }, [movieId]);
+  return (
+    <>
+      {movie && (
+        <div>
+          <div>
+            <div>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt={movie.title}
+                width="250"
+              />
+            </div>
+            <div>
+              <h2>{movie.title}</h2>
+              <p>User score: {movie.vote_average}</p>
+              <h3>Overview</h3>
+              <p>{movie.overview}</p>
+              <h3>Genres</h3>
+              <ul>
+                {movie.genres.map(genre => (
+                  <li key={genre.id}>{genre.name}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div>
+            <p>Additional information</p>
+            <ul>
+              <li>
+                <NavLink to={`cast`}>Cast</NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }

@@ -17,10 +17,30 @@ function fetchDetails(id) {
     }
   });
 }
+function fetchCast(id) {
+  return fetch(`${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`).then(
+    response => {
+      if (response.ok) {
+        return response.json();
+      }
+    }
+  );
+}
+function fetchReviews(id) {
+  return fetch(`${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}`).then(
+    response => {
+      if (response.ok) {
+        return response.json();
+      }
+    }
+  );
+}
 
 const api = {
   fetchPopularMovies,
   fetchDetails,
+  fetchCast,
+  fetchReviews,
 };
 
 export default api;
