@@ -1,12 +1,19 @@
-import { NavLink, useParams, Route, Routes } from 'react-router-dom';
-import { useState, useEffect, Suspense } from 'react';
-
+import {
+  NavLink,
+  Link,
+  useParams,
+  Route,
+  Routes,
+  useLocation,
+  Router,
+} from 'react-router-dom';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import moviesApi from '../services/moviesApi.js';
 
 export default function MovieDetails() {
+  const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [cast, setCast] = useState(null);
   useEffect(() => {
     moviesApi.fetchDetails(movieId).then(setMovie);
   }, [movieId]);
@@ -17,13 +24,15 @@ export default function MovieDetails() {
           <div>
             <div>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt={movie.title}
+                src={`https://image.tmdb.org/t/p/w500/${
+                  movie.poster_path ? movie.poster_path : movie.backdrop_path
+                }`}
+                alt={movie.title ? movie.title : movie.name}
                 width="250"
               />
             </div>
             <div>
-              <h2>{movie.title}</h2>
+              <h2>{movie.title ? movie.original_title : movie.name}</h2>
               <p>User score: {movie.vote_average}</p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
@@ -39,15 +48,22 @@ export default function MovieDetails() {
             <p>Additional information</p>
             <ul>
               <li>
-                <NavLink to={`cast`}>Cast</NavLink>
+                <NavLink
+                  to={{
+                    pathname: `/movies/${movie.id}/cast`,
+                    state: {
+                      from: {
+                        location,
+                      },
+                    },
+                  }}
+                >
+                  Cast
+                </NavLink>
               </li>
             </ul>
           </div>
-          <Suspense fallback={<h2>LOading</h2>}>
-            <Routes>
-              <Route>MMMM</Route>
-            </Routes>
-          </Suspense>
+          <hr />
         </div>
       )}
     </>

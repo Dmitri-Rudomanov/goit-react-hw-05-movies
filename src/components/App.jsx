@@ -14,6 +14,9 @@ const MovieDetailsPage = lazy(() =>
     '../views/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
   )
 );
+const Cast = lazy(() =>
+  import('../views/Cast.js' /* webpackChunkName: "cast-page" */)
+);
 
 export default function App() {
   return (
@@ -24,7 +27,12 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
+        </Routes>
+      </Suspense>
+      <Suspense fallback={<p>FFF</p>}>
+        <Routes>
+          <Route path="/movies/:movieId/cast" element={<Cast />} />
         </Routes>
       </Suspense>
     </Container>
