@@ -7,7 +7,6 @@ import moviesApi from '../services/moviesApi.js';
 export default function Cast() {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
-  console.log(movieId);
   useEffect(() => {
     moviesApi.fetchCast(movieId).then(({ cast }) => setCast(cast));
   }, [movieId]);
@@ -25,6 +24,10 @@ export default function Cast() {
               }
               alt={actor.original_name}
             />
+            <div>
+              <p>{actor.name}</p>
+              <p>Character: {actor.character}</p>
+            </div>
           </div>
         </li>
       ))}

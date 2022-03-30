@@ -61,6 +61,20 @@ export default function MovieDetails() {
                   Cast
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to={{
+                    pathname: `/movies/${movie.id}/reviews`,
+                    state: {
+                      from: {
+                        location,
+                      },
+                    },
+                  }}
+                >
+                  Reviews
+                </NavLink>
+              </li>
             </ul>
           </div>
           <hr />

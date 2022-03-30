@@ -35,12 +35,22 @@ function fetchReviews(id) {
     }
   );
 }
+function fetchMovies(movie) {
+  return fetch(
+    `${BASE_URL}search/movie?api_key=${API_KEY}&query=${movie}&page=1`
+  ).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+  });
+}
 
 const api = {
   fetchPopularMovies,
   fetchDetails,
   fetchCast,
   fetchReviews,
+  fetchMovies,
 };
 
 export default api;
