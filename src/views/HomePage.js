@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import moviesApi from '../services/moviesApi.js';
-import Loader from 'components/Loader/Loader.js';
 
 export default function HomePage() {
   const location = useLocation();
