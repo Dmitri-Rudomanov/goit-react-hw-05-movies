@@ -18,18 +18,10 @@ export default function MoviesPage() {
     if (!query) {
       return;
     }
-    moviesApi
-      .fetchMovies(query)
-      .then(({ results }) => {
-        setMovies(results);
-        return results;
-      })
-      .then(results => {
-        if (results.length !== 0) {
-          return;
-        }
-        alert('OOps');
-      });
+    moviesApi.fetchMovies(query).then(({ results }) => {
+      setMovies(results);
+      return results;
+    });
   }, [query]);
 
   const onHandleSubmit = search => {
@@ -38,7 +30,7 @@ export default function MoviesPage() {
     }
     setQuery(search);
   };
-
+  const ErrorCheck = movies && movies.length === 0 && query !== '';
   return (
     <>
       <SearchBar onHandleSubmit={onHandleSubmit} />
@@ -61,6 +53,9 @@ export default function MoviesPage() {
             </li>
           ))}
         </ul>
+      )}
+      {ErrorCheck && (
+        <h2>Sorry,there is no movie matching search query:{query} </h2>
       )}
     </>
   );

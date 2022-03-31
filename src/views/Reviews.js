@@ -9,7 +9,7 @@ export default function Cast() {
   useEffect(() => {
     moviesApi.fetchReviews(movieId).then(({ results }) => setReviews(results));
   }, [movieId]);
-
+  const reviewsCheck = reviews && reviews.length === 0;
   return (
     <>
       <ul>
@@ -35,6 +35,9 @@ export default function Cast() {
             </li>
           ))}
       </ul>
+      {reviewsCheck && (
+        <h2>Sorry,we havent found any reviews for this movie</h2>
+      )}
     </>
   );
 }

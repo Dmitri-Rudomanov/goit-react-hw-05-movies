@@ -9,16 +9,26 @@ import {
 } from 'react-router-dom';
 import { useState, useEffect, Suspense, lazy } from 'react';
 import moviesApi from '../services/moviesApi.js';
+import Loader from 'components/Loader/Loader.js';
 
 export default function MovieDetails() {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(null);
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState();
   useEffect(() => {
-    moviesApi.fetchDetails(movieId).then(setMovie);
+    setIsLoading(true);
+    moviesApi.fetchDetails(movieId).then(result => {
+      setMovie(result);
+      setIsLoading(false);
+    });
   }, [movieId]);
+
+  const movieCheck = !movie && !isLoading;
+
   return (
     <>
+      {isLoading && <Loader />}
       {movie && (
         <div>
           <div>
@@ -80,6 +90,7 @@ export default function MovieDetails() {
           <hr />
         </div>
       )}
+      {movieCheck && <h2>Sorry,something went wrong with this movie page</h2>}
     </>
   );
 }

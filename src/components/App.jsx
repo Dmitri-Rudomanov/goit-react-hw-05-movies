@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Container from './Container/Container.js';
 import AppBar from './AppBar/AppBar.js';
+import Loader from './Loader/Loader.js';
 
 const HomePage = lazy(() =>
   import('../views/HomePage.js' /* webpackChunkName: "home-page" */)
@@ -26,14 +27,14 @@ export default function App() {
     <Container>
       <AppBar />
 
-      <Suspense fallback={<h1>Loading....</h1>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
           <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
         </Routes>
       </Suspense>
-      <Suspense fallback={<p>Loading....</p>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/movies/:movieId/cast" element={<Cast />} />
           <Route path="/movies/:movieId/reviews" element={<Reviews />} />
