@@ -5,6 +5,7 @@ import moviesApi from '../services/moviesApi.js';
 
 export default function HomePage() {
   const location = useLocation();
+  console.log(location);
   const [trending, setTrending] = useState(null);
   useEffect(() => {
     moviesApi.fetchPopularMovies().then(({ results }) => {
@@ -24,6 +25,7 @@ export default function HomePage() {
                   state: {
                     from: {
                       location,
+                      label: 'Back to Home page',
                     },
                   },
                 }}

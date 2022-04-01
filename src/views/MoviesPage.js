@@ -13,7 +13,7 @@ export default function MoviesPage() {
   const location = useLocation();
   const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState('');
-
+  console.log(location);
   useEffect(() => {
     if (!query) {
       return;
@@ -44,6 +44,7 @@ export default function MoviesPage() {
                   state: {
                     from: {
                       location,
+                      label: 'Back to Movies page',
                     },
                   },
                 }}

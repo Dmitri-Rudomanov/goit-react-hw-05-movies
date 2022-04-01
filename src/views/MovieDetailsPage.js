@@ -1,3 +1,4 @@
+import { useState, useEffect, Suspense, lazy } from 'react';
 import {
   NavLink,
   Link,
@@ -6,13 +7,15 @@ import {
   Routes,
   useLocation,
   Router,
+  useNavigate,
 } from 'react-router-dom';
-import { useState, useEffect, Suspense, lazy } from 'react';
 import moviesApi from '../services/moviesApi.js';
 import Loader from 'components/Loader/Loader.js';
 
 export default function MovieDetails() {
   const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
   const [isLoading, setIsLoading] = useState(null);
   const { movieId } = useParams();
   const [movie, setMovie] = useState();
@@ -24,11 +27,19 @@ export default function MovieDetails() {
     });
   }, [movieId]);
 
+  const onGoBack = () => {
+    navigate();
+  };
+
   const movieCheck = !movie && !isLoading;
 
   return (
     <>
       {isLoading && <Loader />}
+      <button type="button" onClick={onGoBack}>
+        {location?.state?.from?.label ?? 'Назад'}
+      </button>
+      <hr />
       {movie && (
         <div>
           <div>
