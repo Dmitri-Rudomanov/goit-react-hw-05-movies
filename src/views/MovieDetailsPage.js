@@ -27,18 +27,14 @@ export default function MovieDetails() {
     });
   }, [movieId]);
 
-  const onGoBack = () => {
-    navigate();
-  };
-
   const movieCheck = !movie && !isLoading;
 
   return (
     <>
       {isLoading && <Loader />}
-      <button type="button" onClick={onGoBack}>
-        {location?.state?.from?.label ?? 'Назад'}
-      </button>
+      <Link to={location.state ? location.state.from.location : '/'}>
+        {location.state ? `Back to ${location.state.from.label}` : 'Back'}
+      </Link>
       <hr />
       {movie && (
         <div>

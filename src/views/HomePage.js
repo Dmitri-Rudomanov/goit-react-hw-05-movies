@@ -20,15 +20,8 @@ export default function HomePage() {
           {trending.map(trend => (
             <li key={trend.id}>
               <Link
-                to={{
-                  pathname: `/movies/${trend.id}`,
-                  state: {
-                    from: {
-                      location,
-                      label: 'Back to Home page',
-                    },
-                  },
-                }}
+                to={`/movies/${trend.id}`}
+                state={{ from: { location, label: 'Home-Page' } }}
               >
                 {trend.original_title ? trend.original_title : trend.name}
               </Link>

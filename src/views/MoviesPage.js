@@ -11,16 +11,27 @@ import moviesApi from '../services/moviesApi.js';
 
 export default function MoviesPage() {
   const location = useLocation();
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState();
   const [query, setQuery] = useState('');
   console.log(location);
+
+  useEffect(() => {
+    const StoragedMovies = localStorage.getItem('SearchedMovies');
+    const parsedMovies = JSON.parse(StoragedMovies);
+    console.log(parsedMovies);
+    setMovies(parsedMovies);
+  }, []);
+
   useEffect(() => {
     if (!query) {
       return;
     }
     moviesApi.fetchMovies(query).then(({ results }) => {
-      setMovies(results);
-      return results;
+      localStorage.setItem('SearchedMovies', JSON.stringify(results));
+      const StoragedMovies = localStorage.getItem('SearchedMovies');
+      const parsedMovies = JSON.parse(StoragedMovies);
+      console.log(parsedMovies);
+      setMovies(parsedMovies);
     });
   }, [query]);
 
@@ -39,15 +50,8 @@ export default function MoviesPage() {
           {movies.map(movie => (
             <li key={movie.id}>
               <Link
-                to={{
-                  pathname: `/movies/${movie.id}`,
-                  state: {
-                    from: {
-                      location,
-                      label: 'Back to Movies page',
-                    },
-                  },
-                }}
+                to={`/movies/${movie.id}`}
+                state={{ from: { location, label: 'Movies' } }}
               >
                 {movie.original_title ? movie.original_title : movie.name}
               </Link>
