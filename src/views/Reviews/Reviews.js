@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ShowMore from 'react-simple-show-more';
-import moviesApi from '../services/moviesApi.js';
+import moviesApi from '../../services/moviesApi.js';
 
 export default function Cast() {
   const { movieId } = useParams();

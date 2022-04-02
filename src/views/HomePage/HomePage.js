@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import moviesApi from '../services/moviesApi.js';
+import moviesApi from '../../services/moviesApi.js';
 
 export default function HomePage() {
   const location = useLocation();
-  console.log(location);
   const [trending, setTrending] = useState(null);
   useEffect(() => {
     moviesApi.fetchPopularMovies().then(({ results }) => {
       setTrending(results);
     });
+    if (localStorage.getItem('SearchedMovies')) {
+      localStorage.setItem('SearchedMovies', []);
+    }
   }, []);
 
   return (

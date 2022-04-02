@@ -1,21 +1,10 @@
-import { useState, useEffect, Suspense, lazy } from 'react';
-import {
-  NavLink,
-  Link,
-  useParams,
-  Route,
-  Routes,
-  useLocation,
-  Router,
-  useNavigate,
-} from 'react-router-dom';
-import moviesApi from '../services/moviesApi.js';
+import { useState, useEffect } from 'react';
+import { NavLink, Link, useParams, useLocation } from 'react-router-dom';
+import moviesApi from '../../services/moviesApi.js';
 import Loader from 'components/Loader/Loader.js';
 
 export default function MovieDetails() {
   const location = useLocation();
-  const navigate = useNavigate();
-  console.log(location);
   const [isLoading, setIsLoading] = useState(null);
   const { movieId } = useParams();
   const [movie, setMovie] = useState();

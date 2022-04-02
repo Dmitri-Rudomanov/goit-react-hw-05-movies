@@ -5,21 +5,23 @@ import AppBar from './AppBar/AppBar.js';
 import Loader from './Loader/Loader.js';
 
 const HomePage = lazy(() =>
-  import('../views/HomePage.js' /* webpackChunkName: "home-page" */)
+  import('../views/HomePage/HomePage.js' /* webpackChunkName: "home-page" */)
 );
 const MoviesPage = lazy(() =>
-  import('../views/MoviesPage.js' /* webpackChunkName: "movies-page" */)
+  import(
+    '../views/MoviesPage/MoviesPage.js' /* webpackChunkName: "movies-page" */
+  )
 );
 const MovieDetailsPage = lazy(() =>
   import(
-    '../views/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
+    '../views/MovieDetailsPage/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
   )
 );
 const Cast = lazy(() =>
-  import('../views/Cast.js' /* webpackChunkName: "cast-page" */)
+  import('../views/Cast/Cast.js' /* webpackChunkName: "cast-page" */)
 );
 const Reviews = lazy(() =>
-  import('../views/Reviews.js' /* webpackChunkName: "reviews-page" */)
+  import('../views/Reviews/Reviews.js' /* webpackChunkName: "reviews-page" */)
 );
 
 export default function App() {

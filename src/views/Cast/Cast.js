@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import noAvatar from '../icons/no_avatar.jpg';
+import noAvatar from '../../icons/no_avatar.jpg';
 
-import moviesApi from '../services/moviesApi.js';
+import moviesApi from '../../services/moviesApi.js';
 
 export default function Cast() {
   const { movieId } = useParams();

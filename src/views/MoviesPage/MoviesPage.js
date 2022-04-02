@@ -1,25 +1,20 @@
 import { useState, useEffect } from 'react';
-import {
-  NavLink,
-  useRouteMatch,
-  useHistory,
-  useLocation,
-  Link,
-} from 'react-router-dom';
-import SearchBar from '../components/SearchBar/SearchBar.js';
-import moviesApi from '../services/moviesApi.js';
+import { useLocation, Link } from 'react-router-dom';
+import SearchBar from '../../components/SearchBar/SearchBar.js';
+import moviesApi from '../../services/moviesApi.js';
 
 export default function MoviesPage() {
   const location = useLocation();
   const [movies, setMovies] = useState();
   const [query, setQuery] = useState('');
-  console.log(location);
 
   useEffect(() => {
-    const StoragedMovies = localStorage.getItem('SearchedMovies');
-    const parsedMovies = JSON.parse(StoragedMovies);
-    console.log(parsedMovies);
-    setMovies(parsedMovies);
+    if (localStorage.getItem('SearchedMovies')) {
+      const StoragedMovies = localStorage.getItem('SearchedMovies');
+      const parsedMovies = JSON.parse(StoragedMovies);
+      console.log(parsedMovies);
+      setMovies(parsedMovies);
+    }
   }, []);
 
   useEffect(() => {
