@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Container from './Container/Container.js';
 import AppBar from './AppBar/AppBar.js';
 import Loader from './Loader/Loader.js';
-
+import s from './App.module.css';
 const HomePage = lazy(() =>
   import('../views/HomePage/HomePage.js' /* webpackChunkName: "home-page" */)
 );

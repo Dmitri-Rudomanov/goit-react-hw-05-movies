@@ -6,7 +6,7 @@
   text-decoration: none;
   padding: 12px;
   font-weight: 500;
-  color: #2a363b;
+  color: #fff;
   font-size: 18px;
 }
 .activeLink {
@@ -15,5 +15,6 @@
   padding: 12px;
   font-weight: 500;
   font-size: 18px;
-  color: #2196f3;
+  color: #ff3838;
+
 }

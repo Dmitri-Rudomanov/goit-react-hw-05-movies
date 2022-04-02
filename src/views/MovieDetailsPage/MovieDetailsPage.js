@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, Link, useParams, useLocation } from 'react-router-dom';
 import moviesApi from '../../services/moviesApi.js';
 import Loader from 'components/Loader/Loader.js';
+import s from './MovieDetailsPage.module.css';
 
 export default function MovieDetails() {
   const location = useLocation();
@@ -26,9 +27,9 @@ export default function MovieDetails() {
       </Link>
       <hr />
       {movie && (
-        <div>
-          <div>
-            <div>
+        <div className={s.body}>
+          <div className={s.Wrapper}>
+            <div className={s.movieImg}>
               <img
                 src={`https://image.tmdb.org/t/p/w500/${
                   movie.poster_path ? movie.poster_path : movie.backdrop_path

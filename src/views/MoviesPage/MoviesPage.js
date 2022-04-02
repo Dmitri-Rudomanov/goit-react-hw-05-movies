@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar.js';
 import moviesApi from '../../services/moviesApi.js';
+import s from './MoviesPage.module.css';
 
 export default function MoviesPage() {
   const location = useLocation();
@@ -41,18 +42,31 @@ export default function MoviesPage() {
     <>
       <SearchBar onHandleSubmit={onHandleSubmit} />
       {movies && (
-        <ul>
+        <div className={s.wrapper}>
           {movies.map(movie => (
-            <li key={movie.id}>
-              <Link
-                to={`/movies/${movie.id}`}
-                state={{ from: { location, label: 'Movies' } }}
-              >
-                {movie.original_title ? movie.original_title : movie.name}
-              </Link>
-            </li>
+            <Link
+              to={`/movies/${movie.id}`}
+              state={{ from: { location, label: 'Movies' } }}
+              key={movie.id}
+              className={s.card}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${
+                  movie.poster_path ? movie.poster_path : movie.backdrop_path
+                }`}
+                alt={movie.title ? movie.title : movie.name}
+                width="250"
+              />
+              <div className={s.descriptions}>
+                <h1 className={s.title}>
+                  {movie.original_title ? movie.original_title : movie.name}
+                </h1>
+
+                <p>{movie.overview}</p>
+              </div>
+            </Link>
           ))}
-        </ul>
+        </div>
       )}
       {ErrorCheck && (
         <h2>Sorry,there is no movie matching search query:{query} </h2>

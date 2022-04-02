@@ -1,0 +1,10 @@
+.body{
+color: #fff;
+}
+
+.Wrapper{
+    display: flex;
+}
+.movieImg{
+    padding-right: 15px;
+}
