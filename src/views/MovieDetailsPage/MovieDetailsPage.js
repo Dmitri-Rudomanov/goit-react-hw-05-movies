@@ -39,7 +39,9 @@ export default function MovieDetails() {
               />
             </div>
             <div>
-              <h2>{movie.title ? movie.original_title : movie.name}</h2>
+              <h2 className={s.movieTitle}>
+                {movie.title ? movie.original_title : movie.name}
+              </h2>
               <p>User score: {movie.vote_average}</p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
