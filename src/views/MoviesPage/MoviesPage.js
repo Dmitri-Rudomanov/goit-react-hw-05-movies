@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar.js';
 import moviesApi from '../../services/moviesApi.js';
 import s from './MoviesPage.module.css';
-
+import PaginatedItems from '../../components/Pagination/Pagination.js';
 export default function MoviesPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [movies, setMovies] = useState();
   const [query, setQuery] = useState('');
 
@@ -28,6 +29,7 @@ export default function MoviesPage() {
       const parsedMovies = JSON.parse(StoragedMovies);
       console.log(parsedMovies);
       setMovies(parsedMovies);
+      navigate(`?query=${query}&page=1`);
     });
   }, [query]);
 
@@ -68,6 +70,7 @@ export default function MoviesPage() {
           ))}
         </div>
       )}
+      {movies && <PaginatedItems itemsPerPage={4} />}
       {ErrorCheck && (
         <h2>Sorry,there is no movie matching search query:{query} </h2>
       )}
