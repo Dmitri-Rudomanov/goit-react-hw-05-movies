@@ -1,14 +1,14 @@
 const API_KEY = '9f7c5da3425a9d17909027ad2b61278f';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-function fetchPopularMovies() {
-  return fetch(`${BASE_URL}trending/movies/week?api_key=${API_KEY}`).then(
-    response => {
-      if (response.ok) {
-        return response.json();
-      }
+function fetchPopularMovies(page) {
+  return fetch(
+    `${BASE_URL}trending/movies/week?api_key=${API_KEY}&page=${page}`
+  ).then(response => {
+    if (response.ok) {
+      return response.json();
     }
-  );
+  });
 }
 function fetchDetails(id) {
   return fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}`).then(response => {
@@ -35,9 +35,9 @@ function fetchReviews(id) {
     }
   );
 }
-function fetchMovies(movie) {
+function fetchMovies(movie, page) {
   return fetch(
-    `${BASE_URL}search/movie?api_key=${API_KEY}&query=${movie}&page=1`
+    `${BASE_URL}search/movie?api_key=${API_KEY}&query=${movie}&page=${page}`
   ).then(response => {
     if (response.ok) {
       return response.json();
