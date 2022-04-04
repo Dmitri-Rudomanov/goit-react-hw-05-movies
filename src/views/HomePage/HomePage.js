@@ -4,6 +4,7 @@ import { Pagination } from '@material-ui/lab';
 import moviesApi from '../../services/moviesApi.js';
 import s from '../HomePage/HomePage.module.css';
 import useStyles from '../../services/PaginationStyles.js';
+import noFilm from '../../icons/film-demo.jpeg';
 
 export default function HomePage() {
   const classes = useStyles();
@@ -50,9 +51,11 @@ export default function HomePage() {
               className={s.card}
             >
               <img
-                src={`https://image.tmdb.org/t/p/w500/${
-                  trend.poster_path ? trend.poster_path : trend.backdrop_path
-                }`}
+                src={
+                  trend.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${trend.poster_path}`
+                    : noFilm
+                }
                 alt={trend.title ? trend.title : trend.name}
                 width="250"
               />

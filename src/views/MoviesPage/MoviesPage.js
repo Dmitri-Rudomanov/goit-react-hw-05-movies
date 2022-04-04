@@ -4,6 +4,7 @@ import SearchBar from '../../components/SearchBar/SearchBar.js';
 import moviesApi from '../../services/moviesApi.js';
 import useStyles from '../../services/PaginationStyles.js';
 import s from './MoviesPage.module.css';
+import noFilm from '../../icons/film-demo.jpeg';
 import { Pagination } from '@material-ui/lab';
 
 export default function MoviesPage() {
@@ -66,9 +67,11 @@ export default function MoviesPage() {
               className={s.card}
             >
               <img
-                src={`https://image.tmdb.org/t/p/w500/${
-                  movie.poster_path ? movie.poster_path : movie.backdrop_path
-                }`}
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : noFilm
+                }
                 alt={movie.title ? movie.title : movie.name}
                 width="250"
               />
