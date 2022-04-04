@@ -25,15 +25,7 @@ export default function MovieDetails() {
     });
   }, [movieId]);
   const onGoBack = () => {
-    if (
-      location.state.from.location.state.from.location.pathname === '/movies'
-    ) {
-      navigate('/movies');
-      return;
-    }
-    if (location.state.from.location.state.from.location.pathname === '/') {
-      navigate('/');
-    }
+    navigate(location?.state?.from?.location ?? '/');
   };
 
   const movieCheck = !movie && !isLoading;
