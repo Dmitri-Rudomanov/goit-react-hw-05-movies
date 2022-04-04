@@ -37,3 +37,14 @@ color: #fff;
     text-decoration: none;
     cursor: pointer;
 }
+.score{
+    font-size: 20px;
+
+}
+.overview{
+    font-size: 18px;
+}
+.genre{
+    font-size: 16px;
+    padding: 4px;
+}

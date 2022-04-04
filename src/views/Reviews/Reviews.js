@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ShowMore from 'react-simple-show-more';
 import moviesApi from '../../services/moviesApi.js';
+import s from './Reviews.module.css';
 
 export default function Cast() {
   const { movieId } = useParams();
@@ -12,13 +13,13 @@ export default function Cast() {
   const reviewsCheck = reviews && reviews.length === 0;
   return (
     <>
-      <ul>
+      <ul className={s.wrapper}>
         {reviews &&
           reviews.map(review => (
-            <li key={review.id}>
+            <li key={review.id} className={s.reviewCard}>
               <div>
-                <p>{review.author}</p>
-                <p>
+                <p className={s.reviewAuthor}>{review.author}</p>
+                <p className={s.reviewContent}>
                   <ShowMore
                     text={review.content}
                     length={500}

@@ -1,0 +1,21 @@
+.wrapper{
+    color: #fff;
+    list-style: none;
+    padding: 0;
+}
+
+.reviewCard{
+    border: 1px solid #fff;
+    padding: 10px;
+}
+.reviewAuthor{
+    font-size: 30px;
+    font-weight: bold;
+    color:#ff3838 ;
+    text-decoration: underline;
+}
+.reviewContent{
+    line-height: 26px;
+    font-size: 20px;
+
+}

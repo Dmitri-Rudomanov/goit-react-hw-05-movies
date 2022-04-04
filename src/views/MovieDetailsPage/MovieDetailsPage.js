@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
-import {
-  NavLink,
-  Link,
-  useParams,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { useState, useEffect, lazy } from 'react';
+import { NavLink, useParams, useLocation, useNavigate } from 'react-router-dom';
 import moviesApi from '../../services/moviesApi.js';
-import Loader from 'components/Loader/Loader.js';
 import s from './MovieDetailsPage.module.css';
+
+const Loader = lazy(() =>
+  import('components/Loader/Loader.js' /* webpackChunkName: "loader" */)
+);
 
 export default function MovieDetails() {
   const navigate = useNavigate();
@@ -53,13 +50,15 @@ export default function MovieDetails() {
               <h2 className={s.movieTitle}>
                 {movie.title ? movie.original_title : movie.name}
               </h2>
-              <p>User score: {movie.vote_average}</p>
+              <p className={s.score}>User score: {movie.vote_average}</p>
               <h3>Overview</h3>
-              <p>{movie.overview}</p>
+              <p className={s.overview}>{movie.overview}</p>
               <h3>Genres</h3>
               <ul>
                 {movie.genres.map(genre => (
-                  <li key={genre.id}>{genre.name}</li>
+                  <li key={genre.id} className={s.genre}>
+                    {genre.name}
+                  </li>
                 ))}
               </ul>
             </div>

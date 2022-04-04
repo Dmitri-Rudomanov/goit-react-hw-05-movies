@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import SearchBar from '../../components/SearchBar/SearchBar.js';
 import moviesApi from '../../services/moviesApi.js';
 import useStyles from '../../services/PaginationStyles.js';
 import s from './MoviesPage.module.css';
 import noFilm from '../../icons/film-demo.jpeg';
 import { Pagination } from '@material-ui/lab';
+
+const SearchBar = lazy(() =>
+  import(
+    '../../components/SearchBar/SearchBar.js' /* webpackChunkName: "search-bar" */
+  )
+);
 
 export default function MoviesPage() {
   const classes = useStyles();
