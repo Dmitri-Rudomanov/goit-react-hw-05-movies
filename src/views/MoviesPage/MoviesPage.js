@@ -29,11 +29,8 @@ export default function MoviesPage() {
       return;
     }
     moviesApi.fetchMovies(query, page).then(result => {
-      localStorage.setItem('SearchedMovies', JSON.stringify(result));
-      const StoragedMovies = localStorage.getItem('SearchedMovies');
-      const parsedMovies = JSON.parse(StoragedMovies);
       setTotalPages(result.total_pages);
-      setMovies(parsedMovies.results);
+      setMovies(result.results);
     });
     navigate(`?query=${query}&page=${page}`);
   }, [query, page]);
@@ -62,7 +59,7 @@ export default function MoviesPage() {
           {movies.map(movie => (
             <Link
               to={`/movies/${movie.id}`}
-              state={{ from: { location, label: 'Movies' } }}
+              state={{ from: { location, label: 'to Movies' } }}
               key={movie.id}
               className={s.card}
             >

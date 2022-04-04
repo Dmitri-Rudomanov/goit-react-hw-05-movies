@@ -11,3 +11,29 @@ color: #fff;
 .movieTitle{
     color: #ff3838;
 }
+.backBtn {
+    font-family: 'Roboto',
+        sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    border-radius: 0.2rem;
+    border: none;
+    background-color: #ff3838;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.backBtn:hover {
+    background-color: #e20707;
+}
+.info{
+    font-size: 20px;
+}
+.infoItem{
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+}

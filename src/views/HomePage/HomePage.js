@@ -46,7 +46,7 @@ export default function HomePage() {
           {trending.map(trend => (
             <Link
               to={`/movies/${trend.id}`}
-              state={{ from: { location, label: 'Home-Page' } }}
+              state={{ from: { location, label: 'to Home-Page' } }}
               key={trend.id}
               className={s.card}
             >

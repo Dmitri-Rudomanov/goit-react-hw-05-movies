@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Link, useParams, useLocation } from 'react-router-dom';
+import {
+  NavLink,
+  Link,
+  useParams,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import moviesApi from '../../services/moviesApi.js';
 import Loader from 'components/Loader/Loader.js';
 import s from './MovieDetailsPage.module.css';
 
 export default function MovieDetails() {
+  const navigate = useNavigate();
   const location = useLocation();
+  console.log(location);
   const [isLoading, setIsLoading] = useState(null);
   const { movieId } = useParams();
   const [movie, setMovie] = useState();
@@ -16,15 +24,26 @@ export default function MovieDetails() {
       setIsLoading(false);
     });
   }, [movieId]);
+  const onGoBack = () => {
+    if (
+      location.state.from.location.state.from.location.pathname === '/movies'
+    ) {
+      navigate('/movies');
+      return;
+    }
+    if (location.state.from.location.state.from.location.pathname === '/') {
+      navigate('/');
+    }
+  };
 
   const movieCheck = !movie && !isLoading;
 
   return (
     <>
       {isLoading && <Loader />}
-      <Link to={location.state ? location.state.from.location : '/'}>
-        {location.state ? `Back to ${location.state.from.label}` : 'Back'}
-      </Link>
+      <button type="button" onClick={onGoBack} className={s.backBtn}>
+        Back {location?.state?.from?.label}
+      </button>
       <hr />
       {movie && (
         <div className={s.body}>
@@ -54,32 +73,24 @@ export default function MovieDetails() {
             </div>
           </div>
           <div>
-            <p>Additional information</p>
+            <p className={s.info}>Additional information</p>
             <ul>
               <li>
                 <NavLink
-                  to={{
-                    pathname: `/movies/${movie.id}/cast`,
-                    state: {
-                      from: {
-                        location,
-                      },
-                    },
+                  to={`/movies/${movie.id}/cast`}
+                  state={{
+                    from: { location },
                   }}
+                  className={s.infoItem}
                 >
                   Cast
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to={{
-                    pathname: `/movies/${movie.id}/reviews`,
-                    state: {
-                      from: {
-                        location,
-                      },
-                    },
-                  }}
+                  to={`/movies/${movie.id}/reviews`}
+                  state={{ from: { location } }}
+                  className={s.infoItem}
                 >
                   Reviews
                 </NavLink>
