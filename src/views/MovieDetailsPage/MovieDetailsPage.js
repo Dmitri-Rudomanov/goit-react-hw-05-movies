@@ -10,7 +10,6 @@ const Loader = lazy(() =>
 export default function MovieDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const [isLoading, setIsLoading] = useState(null);
   const { movieId } = useParams();
   const [movie, setMovie] = useState();
