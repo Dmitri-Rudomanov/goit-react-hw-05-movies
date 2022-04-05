@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     '& .MuiPaginationItem-page.Mui-selected, & .MuiPaginationItem-page.Mui-selected:hover, & .MuiPaginationItem-page.Mui-selected.Mui-focusVisible,  & .MuiPaginationItem-page:hover, & .MuiPaginationItem-page.Mui-focusVisible':
       {
-        backgroundColor: '#e3f309cb',
+        backgroundColor: '#ff3838',
       },
     '& .MuiPaginationItem-root': {
       color: '#fff',
