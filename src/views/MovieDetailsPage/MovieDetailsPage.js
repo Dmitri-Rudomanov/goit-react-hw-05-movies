@@ -3,6 +3,7 @@ import { NavLink, useParams, useLocation, useNavigate } from 'react-router-dom';
 import moviesApi from '../../services/moviesApi.js';
 import s from './MovieDetailsPage.module.css';
 import Loader from 'components/Loader/Loader.js';
+import noFilm from '../../icons/film-demo.jpeg';
 
 export default function MovieDetails() {
   const navigate = useNavigate();
@@ -40,9 +41,11 @@ export default function MovieDetails() {
           <div className={s.Wrapper}>
             <div className={s.movieImg}>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${
-                  movie.poster_path ? movie.poster_path : movie.backdrop_path
-                }`}
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : noFilm
+                }
                 alt={movie.title ? movie.title : movie.name}
                 width="250"
               />
