@@ -5,6 +5,26 @@ color: #fff;
 .Wrapper{
     display: flex;
 }
+@media (max-width:1020px) {
+.genres{
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+}
+@media (max-width:572px) {
+.Wrapper{
+    display: block;
+    text-align: center;
+}
+.genres{
+    justify-content: center;
+    align-items: center;
+}
+}
+.infoWrapper{
+
+}
 .movieImg{
     padding-right: 15px;
 }

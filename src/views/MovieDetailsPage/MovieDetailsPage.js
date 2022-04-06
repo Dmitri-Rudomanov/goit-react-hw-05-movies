@@ -2,10 +2,7 @@ import { useState, useEffect, lazy } from 'react';
 import { NavLink, useParams, useLocation, useNavigate } from 'react-router-dom';
 import moviesApi from '../../services/moviesApi.js';
 import s from './MovieDetailsPage.module.css';
-
-const Loader = lazy(() =>
-  import('components/Loader/Loader.js' /* webpackChunkName: "loader" */)
-);
+import Loader from 'components/Loader/Loader.js';
 
 export default function MovieDetails() {
   const navigate = useNavigate();
@@ -21,9 +18,14 @@ export default function MovieDetails() {
     });
   }, [movieId]);
   const onGoBack = () => {
-    navigate(-1);
+    if (location.state) {
+      navigate(-1);
+      return;
+    } else {
+      navigate('/');
+      return;
+    }
   };
-
   const movieCheck = !movie && !isLoading;
 
   return (
@@ -45,7 +47,7 @@ export default function MovieDetails() {
                 width="250"
               />
             </div>
-            <div>
+            <div className={s.infoWrapper}>
               <h2 className={s.movieTitle}>
                 {movie.title ? movie.original_title : movie.name}
               </h2>
@@ -53,10 +55,10 @@ export default function MovieDetails() {
               <h3>Overview</h3>
               <p className={s.overview}>{movie.overview}</p>
               <h3>Genres</h3>
-              <ul>
+              <ul className={s.genres}>
                 {movie.genres.map(genre => (
                   <li key={genre.id} className={s.genre}>
-                    {genre.name}
+                    --{genre.name}
                   </li>
                 ))}
               </ul>

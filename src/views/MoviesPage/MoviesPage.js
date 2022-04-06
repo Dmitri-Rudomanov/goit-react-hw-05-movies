@@ -5,12 +5,7 @@ import useStyles from '../../services/PaginationStyles.js';
 import s from './MoviesPage.module.css';
 import noFilm from '../../icons/film-demo.jpeg';
 import { Pagination } from '@material-ui/lab';
-
-const SearchBar = lazy(() =>
-  import(
-    '../../components/SearchBar/SearchBar.js' /* webpackChunkName: "search-bar" */
-  )
-);
+import SearchBar from '../../components/SearchBar/SearchBar.js';
 
 export default function MoviesPage() {
   const classes = useStyles();
