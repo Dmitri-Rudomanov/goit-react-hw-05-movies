@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useParams, useLocation, useNavigate } from 'react-router-dom';
 import moviesApi from '../../services/moviesApi.js';
 import s from './MovieDetailsPage.module.css';
